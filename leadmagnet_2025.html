@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IHMpact Lead Magnet 2025</title>
+  <!-- Chart.js for graphs -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .page {
+      display: none;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .page.active {
+      display: block;
+    }
+    .question {
+      margin-bottom: 25px;
+    }
+    .question label {
+      font-weight: bold;
+      margin-bottom: 6px;
+      display: block;
+    }
+    .range-value {
+      font-size: 0.9em;
+      color: #666;
+      margin-top: 4px;
+    }
+    input[type="range"] {
+      width: 100%;
+    }
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+    .buttons button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      color: #fff;
+      background-color: #007ACC;
+    }
+    .buttons button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+    .buttons button:hover:not(:disabled) {
+      background-color: #005ea6;
+    }
+    .chart-container {
+      margin-top: 20px;
+    }
+    .cta {
+      margin-top: 30px;
+      text-align: center;
+    }
+    .cta input {
+      padding: 8px;
+      width: 60%;
+      max-width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+    .cta button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      background-color: #28a745;
+      color: #fff;
+    }
+    .cta button:hover {
+      background-color: #1e7e34;
+    }
+    .summary-text {
+      margin-top: 10px;
+      font-size: 0.9em;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>IHMpact Lead Magnet 2025</h1>
+    <!-- Sida 1: Inställning och motivation -->
+    <div id="p1" class="page active">
+      <h2>Del 1: Inställning och motivation</h2>
+      <p>Besvara följande frågor för att kartlägga din inställning till vidareutbildning och kompetensutveckling. Använd reglagen för att ange din nivå på en skala från 1 (lågt) till 10 (högt).</p>
+      <div class="question">
+        <label for="positivity25">Hur positiv är du till att fortsätta utbilda dig?</label>
+        <input type="range" id="positivity25" min="1" max="10" value="5" oninput="updateLabel('positivity25Val', this.value)">
+        <div class="range-value" id="positivity25Val">5</div>
+      </div>
+      <div class="question">
+        <label for="hours25">Hur många timmar per vecka kan du avsätta för utbildning?</label>
+        <input type="range" id="hours25" min="0" max="20" value="5" oninput="updateLabel('hours25Val', this.value)">
+        <div class="range-value" id="hours25Val">5</div>
+      </div>
+      <div class="question">
+        <label>Vad motiverar dig mest att studera? Betygsätt varje faktor.</label>
+        <div>
+          <label for="motDev25">Personlig utveckling & självförverkligande</label>
+          <input type="range" id="motDev25" min="1" max="10" value="5" oninput="updateLabel('motDev25Val', this.value)">
+          <div class="range-value" id="motDev25Val">5</div>
+        </div>
+        <div>
+          <label for="motSal25">Högre lön eller befordran</label>
+          <input type="range" id="motSal25" min="1" max="10" value="5" oninput="updateLabel('motSal25Val', this.value)">
+          <div class="range-value" id="motSal25Val">5</div>
+        </div>
+        <div>
+          <label for="motInt25">Ämnesintresse</label>
+          <input type="range" id="motInt25" min="1" max="10" value="5" oninput="updateLabel('motInt25Val', this.value)">
+          <div class="range-value" id="motInt25Val">5</div>
+        </div>
+      </div>
+      <div class="buttons">
+        <button disabled>Föregående</button>
+        <button onclick="nextPage25(1)">Nästa</button>
+      </div>
+    </div>
+    <!-- Sida 2: Hinder, AI och uppmuntran -->
+    <div id="p2" class="page">
+      <h2>Del 2: Hinder, AI och uppmuntran</h2>
+      <p>I årets rapport har fokus lagts på vilka hinder vi upplever, hur vi ser på AI och om arbetsgivaren stöttar vidareutbildning.</p>
+      <div class="question">
+        <label>Vilka hinder upplever du när det kommer till vidareutbildning? Välj de som passar.</label>
+        <label><input type="checkbox" name="hinders" value="Ekonomi"> Ekonomiska hinder</label><br>
+        <label><input type="checkbox" name="hinders" value="Ålder"> Oro för att vara för gammal</label><br>
+        <label><input type="checkbox" name="hinders" value="Tidsbrist"> Tidsbrist</label><br>
+        <label><input type="checkbox" name="hinders" value="Privatliv"> Svårt att kombinera med privatliv</label><br>
+        <label><input type="checkbox" name="hinders" value="Jobbosäkerhet"> Osäkerhet kring framtida jobbmöjligheter</label>
+      </div>
+      <div class="question">
+        <label for="aiWorry">Hur orolig är du för att AI påverkar din yrkesroll?</label>
+        <input type="range" id="aiWorry" min="1" max="10" value="5" oninput="updateLabel('aiWorryVal', this.value)">
+        <div class="range-value" id="aiWorryVal">5</div>
+      </div>
+      <div class="question">
+        <label for="encourage">Upplever du att din arbetsgivare uppmuntrar dig att vidareutbilda dig, oavsett ålder?</label>
+        <input type="range" id="encourage" min="1" max="10" value="5" oninput="updateLabel('encourageVal', this.value)">
+        <div class="range-value" id="encourageVal">5</div>
+      </div>
+      <div class="buttons">
+        <button onclick="prevPage25(2)">Föregående</button>
+        <button onclick="nextPage25(2)">Nästa</button>
+      </div>
+    </div>
+    <!-- Sida 3: Resultat och summering -->
+    <div id="p3" class="page">
+      <h2>Del 3: Resultat och summering</h2>
+      <p>Här presenteras en sammanställning av dina svar jämfört med insikter från IHMpact Report 2025.</p>
+      <div class="chart-container">
+        <canvas id="motChart25"></canvas>
+      </div>
+      <div class="chart-container">
+        <canvas id="hoursChart25"></canvas>
+      </div>
+      <div class="chart-container">
+        <canvas id="aiChart25"></canvas>
+      </div>
+      <div class="summary-text" id="summary25"></div>
+      <div class="cta">
+        <h3>Ladda ner din personliga sammanfattning</h3>
+        <p>Skriv in din e‑postadress för att få en nedladdningsbar rapport baserad på dina svar och de viktigaste insikterna ur IHMpact Report 2025.</p>
+        <input type="email" id="email25" placeholder="Din e‑postadress">
+        <br>
+        <button onclick="downloadSummary25()">Ladda ner sammanfattning</button>
+        <br><br>
+        <h3>Boka ett rådgivande möte</h3>
+        <p>Vill du diskutera hur IHM kan hjälpa dig eller ditt företag med kompetensutveckling? Klicka på knappen nedan för att boka ett kostnadsfritt rådgivande möte.</p>
+        <button onclick="bookMeeting()">Boka möte med IHM</button>
+      </div>
+      <div class="buttons">
+        <button onclick="prevPage25(3)">Föregående</button>
+        <button disabled>Nästa</button>
+      </div>
+    </div>
+  </div>
+<script>
+  // State for 2025 version
+  const state25 = {
+    positivity: 5,
+    hours: 5,
+    motivation: {
+      development: 5,
+      salary: 5,
+      interest: 5
+    },
+    hinders: [],
+    aiWorry: 5,
+    encouragement: 5
+  };
+
+  // Update labels and state
+  function updateLabel(labelId, value) {
+    document.getElementById(labelId).textContent = value;
+    switch(labelId) {
+      case 'positivity25Val': state25.positivity = Number(value); break;
+      case 'hours25Val': state25.hours = Number(value); break;
+      case 'motDev25Val': state25.motivation.development = Number(value); break;
+      case 'motSal25Val': state25.motivation.salary = Number(value); break;
+      case 'motInt25Val': state25.motivation.interest = Number(value); break;
+      case 'aiWorryVal': state25.aiWorry = Number(value); break;
+      case 'encourageVal': state25.encouragement = Number(value); break;
+    }
+  }
+
+  function nextPage25(n) {
+    if (n === 2) {
+      // capture hinders
+      state25.hinders = [];
+      const checkboxes = document.getElementsByName('hinders');
+      for (const box of checkboxes) {
+        if (box.checked) state25.hinders.push(box.value);
+      }
+    }
+    document.getElementById('p' + n).classList.remove('active');
+    document.getElementById('p' + (n + 1)).classList.add('active');
+    if (n + 1 === 3) {
+      renderCharts25();
+    }
+  }
+  function prevPage25(n) {
+    document.getElementById('p' + n).classList.remove('active');
+    document.getElementById('p' + (n - 1)).classList.add('active');
+  }
+
+  let motChart25, hoursChart25, aiChart25;
+  function renderCharts25() {
+    // report averages from 2025 (motivation data reused from 2024 as proxy)
+    const repMot = { development: 17, salary: 14, interest: 24 };
+    const repHoursAvg = 3; // still around 1–5 h/vecka
+    const repAIWorry = 16; // % som oroar sig att AI ersätter dem
+    // Chart for motivation
+    const motCtx = document.getElementById('motChart25').getContext('2d');
+    const motData = {
+      labels: ['Personlig utveckling', 'Högre lön', 'Ämnesintresse'],
+      datasets: [
+        {
+          label: 'Dina poäng (1–10)',
+          data: [state25.motivation.development, state25.motivation.salary, state25.motivation.interest],
+          backgroundColor: 'rgba(0, 123, 255, 0.5)'
+        },
+        {
+          label: 'Genomsnitt i rapporten (%)',
+          data: [repMot.development, repMot.salary, repMot.interest],
+          backgroundColor: 'rgba(255, 99, 132, 0.5)'
+        }
+      ]
+    };
+    const motOptions = {
+      responsive: true,
+      scales: {
+        y: { beginAtZero: true, suggestedMax: 10, title: { display: true, text: 'Poäng / Procent' } }
+      }
+    };
+    if (motChart25) motChart25.destroy();
+    motChart25 = new Chart(motCtx, { type: 'bar', data: motData, options: motOptions });
+    // Hours chart
+    const hoursCtx = document.getElementById('hoursChart25').getContext('2d');
+    const hoursData = {
+      labels: ['Dina timmar/vecka', 'Genomsnitt (1–5 tim/vecka)'],
+      datasets: [
+        { label: 'Timmar', data: [state25.hours, repHoursAvg], backgroundColor: ['rgba(40,167,69,0.5)', 'rgba(255,193,7,0.5)'] }
+      ]
+    };
+    const hoursOptions = { responsive: true, scales: { y: { beginAtZero: true, title: { display: true, text: 'Timmar/vecka' } } } };
+    if (hoursChart25) hoursChart25.destroy();
+    hoursChart25 = new Chart(hoursCtx, { type: 'bar', data: hoursData, options: hoursOptions });
+    // AI worry chart
+    const aiCtx = document.getElementById('aiChart25').getContext('2d');
+    const aiData = {
+      labels: ['Din oro (1–10)', 'Andel oroliga (%)'],
+      datasets: [
+        { label: 'AI‑oro', data: [state25.aiWorry, repAIWorry], backgroundColor: ['rgba(23,162,184,0.5)', 'rgba(220,53,69,0.5)'] }
+      ]
+    };
+    const aiOptions = { responsive: true, scales: { y: { beginAtZero: true, title: { display: true, text: 'Poäng / Procent' } } } };
+    if (aiChart25) aiChart25.destroy();
+    aiChart25 = new Chart(aiCtx, { type: 'bar', data: aiData, options: aiOptions });
+    // summary text
+    const el = document.getElementById('summary25');
+    el.innerHTML = '';
+    el.innerHTML += '<h3>Sammanfattning av dina svar</h3>';
+    el.innerHTML += `<p>Du angav inställningen <strong>${state25.positivity}/10</strong> till att fortsätta utbilda dig. Du kan avsätta ungefär <strong>${state25.hours} tim/vecka</strong> för studier.</p>`;
+    const mot = highestMotivation25();
+    el.innerHTML += `<p>Ditt starkaste driv är <strong>${mot}</strong>.</p>`;
+    if (state25.hinders.length > 0) {
+      el.innerHTML += '<p>Du upplever följande hinder: <strong>' + state25.hinders.join(', ') + '</strong>.</p>';
+    } else {
+      el.innerHTML += '<p>Du upplever inga större hinder för vidareutbildning.</p>';
+    }
+    el.innerHTML += `<p>Du skattar din oro för AI:s påverkan till <strong>${state25.aiWorry}/10</strong> och upplever din arbetsgivares uppmuntran till vidareutbildning på <strong>${state25.encouragement}/10</strong>.</p>`;
+    // bullet points from 2025 report
+    el.innerHTML += '<p><em>Några centrala resultat från IHMpact 2025:</em></p>';
+    el.innerHTML += '<ul>' +
+      '<li>64 % av svenskarna är mycket eller ganska positiva till vidareutbildning; kvinnor 66 % och män 62 %【706072525839334†L210-L218】.</li>' +
+      '<li>Personer med endast gymnasieutbildning är till 54 % positiva, medan studerande vid högskola/universitet ligger på 72 % och de med examen på 80 %【706072525839334†L262-L269】.</li>' +
+      '<li>De största hindren är ekonomiska (26 %), oro för att vara för gammal (23 %), tidsbrist (18 %), svårt att kombinera med privatliv (14 %) och jobbosäkerhet (12 %)【706072525839334†L717-L726】.</li>' +
+      '<li>Mer än var fjärde svensk (26 %) uppger att de inte har råd att vidareutbilda sig【706072525839334†L789-L792】.</li>' +
+      '<li>Åldern upplevs som ett hinder av 33 % i åldern 50–64 år och 35 % av dem över 65 år【706072525839334†L751-L756】.</li>' +
+      '<li>43 % av svenskarna har fått en förändrad syn på yrkesutbildningar till följd av samhällsutvecklingen【706072525839334†L853-L855】.</li>' +
+      '<li>38 % upplever att deras arbetsgivare uppmuntrar vidareutbildning oavsett ålder【706072525839334†L2090-L2096】【706072525839334†L2256-L2258】.</li>' +
+      '<li>35 % tror att AI kommer göra deras arbete mer effektivt utan att ersätta dem, medan 28 % tror att AI inte påverkar deras yrke alls【706072525839334†L1500-L1516】.</li>' +
+      '<li>Endast 16 % är oroade för att bli ersatta av AI, medan 43 % inte oroar sig alls och 23 % är neutrala【706072525839334†L1553-L1561】.</li>' +
+    '</ul>';
+  }
+
+  function highestMotivation25() {
+    const arr = Object.entries(state25.motivation).sort((a,b) => b[1] - a[1]);
+    const map = { development: 'personlig utveckling', salary: 'högre lön', interest: 'ämnesintresse' };
+    return map[arr[0][0]];
+  }
+  // download summary
+  function downloadSummary25() {
+    const email = document.getElementById('email25').value;
+    if (!email) { alert('Ange din e‑postadress.'); return; }
+    const lines = [];
+    lines.push('Personlig rapport – IHMpact 2025');
+    lines.push('--------------------------------');
+    lines.push('E‑post: ' + email);
+    lines.push('');
+    lines.push('Dina svar:');
+    lines.push('- Positiv inställning till utbildning: ' + state25.positivity + '/10');
+    lines.push('- Timmar per vecka avsatta för studier: ' + state25.hours);
+    lines.push('- Största drivkraft: ' + highestMotivation25());
+    lines.push('- Hinder: ' + (state25.hinders.length ? state25.hinders.join(', ') : 'inga'));
+    lines.push('- Oro för AI: ' + state25.aiWorry + '/10');
+    lines.push('- Uppmuntran från arbetsgivare: ' + state25.encouragement + '/10');
+    lines.push('');
+    lines.push('Viktiga insikter ur IHMpact 2025:');
+    lines.push('- 64 % av svenskarna är positiva till vidareutbildning; kvinnor 66 % och män 62 %【706072525839334†L210-L218】.');
+    lines.push('- Personer med gymnasieexamen är till 54 % positiva, medan studerande vid högskola/universitet är 72 % och de med examen 80 %【706072525839334†L262-L269】.');
+    lines.push('- Största hindren är ekonomiska (26 %), oro för att vara för gammal (23 %), tidsbrist (18 %), privatliv (14 %) och jobbosäkerhet (12 %)【706072525839334†L717-L726】.');
+    lines.push('- 26 % uppger att de inte har råd att vidareutbilda sig【706072525839334†L789-L792】.');
+    lines.push('- 33 % av dem i åldern 50–64 år och 35 % av dem över 65 år anser att ålder är ett hinder【706072525839334†L751-L756】.');
+    lines.push('- 43 % har fått en förändrad syn på yrkesutbildningar till följd av samhällsutvecklingen【706072525839334†L853-L855】.');
+    lines.push('- 38 % upplever att deras arbetsgivare uppmuntrar vidareutbildning【706072525839334†L2090-L2096】【706072525839334†L2256-L2258】.');
+    lines.push('- 35 % tror att AI gör jobbet mer effektivt, 28 % att AI inte påverkar jobbet【706072525839334†L1500-L1516】.');
+    lines.push('- Endast 16 % oroar sig för att bli ersatta av AI medan 43 % inte oroar sig alls【706072525839334†L1553-L1561】.');
+    const blob = new Blob([lines.join('\n')], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'ihmpact_personlig_rapport_2025.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    alert('Din rapport laddas ner. Tack för att du deltar!');
+  }
+
+  function bookMeeting() {
+    window.open('https://www.ihm.se/', '_blank');
+  }
+</script>
+</body>
+</html>
